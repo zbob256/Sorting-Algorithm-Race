@@ -103,7 +103,7 @@ This algorithm sorts data by first going right to left for each digit and puttin
 This one is cool since it is one of the algorithms in my project that combines multiple different algorithms together. These being Insertion sort and Merge sort. I thought it was worth highlighting because it is used in Python, Java, and JavaScript, to name a few.
 
 ## Adding Your Own Sorting Algorithm
-- Make two new files: one in `include/sorts` (`mysort.hpp`] and the other in `src/sorts` (`mysort.cpp`)
+- Make two new files: one in `include/sorts` (`mysort.hpp`) and the other in `src/sorts` (`mysort.cpp`)
 - `mysort.hpp` should have:
 ```c++
 #pragma once
