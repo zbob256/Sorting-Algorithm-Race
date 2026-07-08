@@ -57,8 +57,7 @@ Through running my program, a few things stood out to me:
 - CMake
 
 ## Build and Compile
-`cmake -S . -B build`
-
+`cmake -S . -B build`  
 `cmake --build build`
 
 ## Usage
