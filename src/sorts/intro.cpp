@@ -75,6 +75,8 @@ void introInsertionSortRange(std::vector<int>& arr, int low, int high) {
         int key = arr[i];
         int j = i - 1;
 
+        introSort.operations++;
+
         while (j >= low && arr[j] > key) {
             arr[j + 1] = arr[j];
             j--;
@@ -105,6 +107,8 @@ void introSortUtil(std::vector<int>& arr, int low, int high, int depthLimit) {
         int pivotIndex = partition(arr, low, high);
         introSortUtil(arr, low, pivotIndex - 1, depthLimit - 1);
         introSortUtil(arr, pivotIndex + 1, high, depthLimit - 1);
+
+        introSort.operations++;
     }
 }
 
