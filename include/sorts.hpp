@@ -1,0 +1,18 @@
+#pragma once
+
+#include "sorts/bubble.hpp"
+#include "sorts/bucket.hpp"
+#include "sorts/cocktailshaker.hpp"
+#include "sorts/comb.hpp"
+#include "sorts/counting.hpp"
+#include "sorts/gnome.hpp"
+#include "sorts/heap.hpp"
+#include "sorts/insertion.hpp"
+#include "sorts/intro.hpp"
+#include "sorts/merge.hpp"
+#include "sorts/oddeven.hpp"
+#include "sorts/quick.hpp"
+#include "sorts/radix.hpp"
+#include "sorts/selection.hpp"
+#include "sorts/shell.hpp"
+#include "sorts/tim.hpp"
