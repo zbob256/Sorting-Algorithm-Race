@@ -32,7 +32,7 @@ Below is a table with some basic information on each sorting algorithm, per Chat
 | Tim Sort | $O(n \log n)$ | $O(n)$ | $O(n \log n)$ | $O(n)$ | Hybrid (Merge + Insertion) |
 
 ## Inspiration
-I orignally was motivated to make this from a video that popped up in my recommended in YouTube. I thought it was interesting how many sorting algorithms existed I had no idea about, and the fact that they actually all had a unique process to sort data was fascinating.
+I orignally was motivated to make this from a video on YouTube. I thought it was interesting how many sorting algorithms existed I had no idea about, and the fact that they actually all had a unique process to sort data was fascinating.
 
 <a href="https://www.youtube.com/watch?v=vr5dCRHAgb0">
   <img src="https://img.youtube.com/vi/vr5dCRHAgb0/hqdefault.jpg" alt="Video Thumbnail" width="200">
