@@ -2,13 +2,13 @@
 A terminal-based sorting algorithm race visualizer, which puts 16 different sorting algorithms head to head to showcase how different array ranges and sizes effect the performance of various types of sorting algorithms.
 
 ## About
-This project puts 16 different sorting algorithms in a race. Each algorithm has one thread to run on, as the main thread prints the information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays.
+This project puts 16 different sorting algorithms in a race. Each algorithm has one thread to run on, as the main thread prints the information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays. It is worth mentioning the operations section is a little broad and inconsistent across all 16 algorithms, but still an important feature to have nonetheless.
 
 There are 5 total statuses a sorting algorithm can be in: "Ready", "Running", "Checking", and then either "Finished" or "Failed". Since the "Checking" state is just seeing if everything is sorted, the status quickly changes to "Finished", making it hard to notice it is there. However, with a high enough element count, you will notice it for a brief second.
 
-The program waits for the user to press Enter, than sorts the vector `dataset`. What is cool, is that each algorithm makes a copy of the same data via passing it into the array for each function, which is to ensure fairness among our competitors. I thought it was important that each algorithm sorts the same exact array, even if the elements are randomly generated. Once the algorithm is finished, it is passed to the function `verify`, and if that function returns `true` the status is set to "Finished", or "Failed" if `verify` returns `false`.
+The program waits for the user to press Enter, than sorts the vector `dataset`. Each algorithm makes a copy of the same data by passing it into the array for each function to ensure fairness among our racers. Once the algorithm is finished, it is passed to the function `verify`, and if that function returns `true` the status is set to "Finished", or if `verify` returns `false`, "Failed".
 
-The program also shows each thread's ID, the time in seconds, and of course upon completion, the rank of the sorting algorithm. It is worth noting the time taken is likely not accurate for each sorting algorithm, if we are only talking about the raw speed to sort the data. In the code for the sorting algorithm it increases `sort.operations` for the sort's respective class, which takes some time.
+The program also shows each thread's ID, the time in seconds, and of course the rank of the sorting algorithm upon completion. It is worth noting the time taken is likely not accurate for each sorting algorithm, if we are only talking about the raw speed to sort the array. In the code for the sorting algorithm it increases `sort.operations` for the sort's respective class, which does take time.
 
 Below is a table with some basic information on each sorting algorithm, per ChatGPT:
 
@@ -40,17 +40,16 @@ I orignally was motivated to make this from a video on YouTube. I thought it was
 
 [sorting algorithms to relax/study to](https://www.youtube.com/watch?v=vr5dCRHAgb0)
 
-However, I thought it was lacking the ability to race. And it randomizes the array differently for each sorting algorithm in this video, meaning you couldn't just compare the sort time it tells you in the top left corner.
+However, I thought it was lacking the ability to race. I also wanted to see how different sorts handle different ranges and amounts of data. Would one sort always rank first? How much effect does varying these aspects of the data actually cause?
 
-I also wanted to see how different sorts handle different ranges and amounts of data. Would one sort always be on top if I ranked them by time, no matter the array that is passed to the sorting algorithm? Or would they be different? A clear example of this is how Counting sort thrives when the range of integers is small, and there is a high amount of elements.
-
-Later on, I uncovered more resources similar to this: [Toptal Sorting Algorithms](https://www.toptal.com/developers/sorting-algorithms) and [Sound of Sorting](https://github.com/bingmann/sound-of-sorting).
+Later on, I uncovered more resources similar to the video: [Toptal Sorting Algorithms](https://www.toptal.com/developers/sorting-algorithms) and [Sound of Sorting](https://github.com/bingmann/sound-of-sorting).
 
 ## Observations
 Through running my program, a few things stood out to me:
 - Intro sort, which has a lot of logic in deciding which sort to use, placed lower on very small datasets since more simpler ones got straight to the point and avoided more complex optimizations.
 - Non-caomparitve sorts such as Radix Sort, Bucket Sort, and Counting Sort remained dominant over large datasets, which makes sense due to their linear time.
-- With very small datasets, like 256 for example. the top 5 is almost random. This is because at this number of elements, the randomness more greatly effects how each algorithm sorts. You need a larger dataset for the sorting algorithms to differentiate themselves from each other, sort of like the law of large numbers.
+- With smaller datasets, the top ranked algorithms are almost impossible to predict. This is because at this number of elements, the randomness more greatly effects how each algorithm sorts. You need a larger dataset for the sorting algorithms to differentiate themselves from each other, sort of similar to the idea in the law of large numbers.
+- With a higher neatness, the slower algorithms benefit the most, except Selection sort, because it still goes through roughly the same amount of checks when finding the next element to select.
 
 ## Dependencies
 - C++
@@ -61,12 +60,11 @@ Through running my program, a few things stood out to me:
 `cmake --build build`
 
 ## Usage
-Upon running the program, you must press Enter to start. To change the minimum value, maximum value, and the number of elements in the array being sorted, configure [dataset.hpp](include/dataset.hpp) and change the constants at the top - `MIN`, `MAX`, and `ELEMENTS`.
+Upon running the program, you must press Enter to start. To change the minimum value, maximum value, the number of elements in the array being sorted, and the neatness of the array (how sorted it already is), configure [dataset.hpp](include/dataset.hpp) and change the constants at the top - `MIN`, `MAX`, `ELEMENTS`, and `NEATNESS`.
 - Adjust terminal and font size properly.
-- Times will likely vary between different hardware.
-- For less efficient sorts, like Bubble sort for example, be careful with going to high, or else it runs for what feels like forever. The bottom 6 all had this problem with larger and larger amounts of elements.
-- But, you can also take a algorithm away by commenting out some in [list.cpp](src/list.cpp).
-    - I prefer this set up since it takes away the noticably slower sorts:
+- For less efficient sorts, like Bubble sort for example, be careful with going to high, or else it runs for what feels like forever. The bottom 6 all had this problem with larger amounts of elements.
+- That being said, you can also take algorithms away by commenting out some in [list.cpp](src/list.cpp).
+    - I prefer this set up since it takes away the noticably slower sorts (bottom 6):
 ```c++
 std::vector<std::reference_wrapper<Algorithm>> algorithms = {
     // bubbleSort,
@@ -88,23 +86,23 @@ std::vector<std::reference_wrapper<Algorithm>> algorithms = {
 };
 ```
 
-Note: The entire project is not designed for vectors with floats, or other data types. It is currently only adapted for integers.
+*Note: the entire project was not designed for vectors with floats, or other data types. It is currently only adapted for integers.*
 
 ## How Some of the Algorithms Work
-I don't want to have to write about all 16 of them, but a couple stood out to me that felt important, and I wanted to point them out here.
+I won't write about all 16 I implemented, but a couple stood out and felt important, so I'll point them out below.
 
 ### [Counting Sort](src/sorts/counting.cpp)
-I feel like this one was the definition of work smarter not harder. It is basically bottlenecked by your memory since it works by mapping the values to indices in a new array. It is also used in the Radix sort also in the project.
+This one was the definition of work smarter, not harder. It uses lots of memory since it works by mapping the values to indices in a new array. It is also used within Radix sort, or at least the version I have.
 
 ### [Radix Sort](src/sorts/radix.cpp)
-This algorithm sorts data by first going right to left for each digit and putting elements into 10 buckets. Leaning about this brought up phone numbers. I realized why phone numbers were a common example for Radix sort - because phone numbers have area codes at the highest or left most digits.
+This algorithm sorts data by first going right to left for each digit and putting elements into 10 buckets. While researching, I realized why phone numbers were a common example for Radix sort - because phone numbers have area codes at the highest or left most digits.
 
 ### [Tim Sort](src/sorts/tim.cpp)
-This one is cool since it is one of the algorithms in my project that combines multiple different algorithms together. These being Insertion sort and Merge sort. I thought it was worth highlighting because it is used in Python, Java, and JavaScript, to name a few.
+This one is cool since it is one of the algorithms in my project that combines multiple different algorithms together. These algorithms were Insertion sort and Merge sort. Another reason it is worth highlighting is because it is used in the built in sort functions for languages like Python, Java, and JavaScript, only to name a few.
 
 ## Adding Your Own Sorting Algorithm
-- Make two new files: one in `include/sorts` (`mysort.hpp`) and the other in `src/sorts` (`mysort.cpp`)
-- `mysort.hpp` should have:
+- Make two new files: in `include/sorts`: (`mysort.hpp`) and in `src/sorts`: (`mysort.cpp`).
+- `mysort.hpp` should contain:
 ```c++
 #pragma once
 
@@ -160,8 +158,9 @@ add_executable(Sorting-Algorithm-Race
 )
 ```
 
-## Future Additions
-All in all, I wanted to include a wide array of different types of sorts, which I believe I did. If I even do come back to this project, I would make some sorting algorithms multithreaded, so the thread ID column would be more interesting and so the sorts could reach their full potential. After all, some sorts I implememented really only shine when ran in parallel. I would also add sorts like Bitonic Sort, Tree Sort, Pigeonhole Sort, and subsets of Radix Sort. I'd probably also change the operations to be a less broad value, since, the way I incrememnt operations is admittatly a little inconsistant. A small change I could add, so users don't have to comment out slower sorts, is a time out feature. If a sort takes a long enough time, it's status goes to "Timed Out" instead of "Failed" or "Finished" as one of the end conditions. One last future addition worth implementing was making a neatly sorted option for when we randomize the data we are sorting, since many sorts perform differently when the data is already somewhat sorted. At least for now, I am happy with what is there currently.
-
 ## Screenshots
-![Screenshot 1](screenshots/screenshot1.png)
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <img src="screenshots/screenshot1.png" width="800"/>
+    <img src="screenshots/screenshot2.png" width="1000"/>
+</div>
