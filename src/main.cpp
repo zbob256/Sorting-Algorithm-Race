@@ -12,7 +12,9 @@ int currentFailRank = 1;
 void update() {
     std::cout << "\033[H";
 
-    std::cout << ELEMENTS << " elements from " << MIN << " to " << MAX << "." << std::endl;
+    std::cout << "Size: " << ELEMENTS << " elements. Range: " << MIN << " to " << MAX << ". Neatness: " << NEATNESS << "." << std::endl;
+    
+    std::cout << "\n";
 
     std::cout << std::left
         << std::setw(10) << "Rank"
