@@ -88,18 +88,6 @@ std::vector<std::reference_wrapper<Algorithm>> algorithms = {
 
 *Note: the entire project was not designed for vectors with floats, or other data types. It is currently only adapted for integers.*
 
-## How Some of the Algorithms Work
-I won't write about all 16 I implemented, but a couple stood out and felt important, so I'll point them out below.
-
-### [Counting Sort](src/sorts/counting.cpp)
-This one was the definition of work smarter, not harder. It uses lots of memory since it works by mapping the values to indices in a new array. It is also used within Radix sort, or at least the version I have.
-
-### [Radix Sort](src/sorts/radix.cpp)
-This algorithm sorts data by first going right to left for each digit and putting elements into 10 buckets. While researching, I realized why phone numbers were a common example for Radix sort - because phone numbers have area codes at the highest or left most digits.
-
-### [Tim Sort](src/sorts/tim.cpp)
-This one is cool since it is one of the algorithms in my project that combines multiple different algorithms together. These algorithms were Insertion sort and Merge sort. Another reason it is worth highlighting is because it is used in the built in sort functions for languages like Python, Java, and JavaScript, only to name a few.
-
 ## Adding Your Own Sorting Algorithm
 - Make two new files: in `include/sorts`: (`mysort.hpp`) and in `src/sorts`: (`mysort.cpp`).
 - `mysort.hpp` should contain:
