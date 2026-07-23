@@ -47,7 +47,7 @@ Later on, I uncovered more resources similar to the video: [Toptal Sorting Algor
 ## Observations
 Through running my program, a few things stood out to me:
 - Intro sort, which has a lot of logic in deciding which sort to use, placed lower on very small datasets since more simpler ones got straight to the point and avoided more complex optimizations.
-- Non-caomparitve sorts such as Radix Sort, Bucket Sort, and Counting Sort remained dominant over large datasets, which makes sense due to their linear time.
+- Non-comparative sorts such as Radix Sort, Bucket Sort, and Counting Sort remained dominant over large datasets, which makes sense due to their linear time.
 - With smaller datasets, the top ranked algorithms are almost impossible to predict. This is because at this number of elements, the randomness more greatly effects how each algorithm sorts. You need a larger dataset for the sorting algorithms to differentiate themselves from each other, sort of similar to the idea in the law of large numbers.
 - With a higher neatness, the slower algorithms benefit the most, except Selection sort, because it still goes through roughly the same amount of checks when finding the next element to select.
 
@@ -97,7 +97,7 @@ std::vector<std::reference_wrapper<Algorithm>> algorithms = {
 #include "dataset.hpp"
 #include <vector>
 
-void mySort(std::vector<int> arr);
+void myFunc(std::vector<int> arr);
 ```
 - and `mysort.cpp` should have:
 ```c++
@@ -106,7 +106,7 @@ void mySort(std::vector<int> arr);
 #include "sorts.hpp"
 #include "sorts/verify.hpp"
 
-void mySort(std::vector<int> arr) {
+void myFunc(std::vector<int> arr) {
     mySort.id = std::this_thread::get_id();
     mySort.startTime = std::chrono::steady_clock::now();
     mySort.status = "Running";
@@ -127,7 +127,7 @@ extern Algorithm mySort;
 ```
 - And [list.cpp](src/list.cpp):
 ```c++
-Algorithm mySort(-1, "My Sort", std::this_thread::get_id(), "Ready", mySort);
+Algorithm mySort(-1, "My Sort", std::this_thread::get_id(), "Ready", myFunc);
 
 std::vector<std::reference_wrapper<Algorithm>> algorithms = {
     ...,
