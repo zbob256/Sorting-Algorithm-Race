@@ -1,5 +1,14 @@
 # Sorting Algorithm Race
 A terminal-based sorting algorithm race visualizer, which puts 16 different sorting algorithms head to head to showcase how different array ranges and sizes effect the performance of various types of sorting algorithms.
+<img src="screenshots/recording.gif" width="800"/>
+
+## Dependencies
+- C++
+- CMake
+
+## Build and Compile
+`cmake -S . -B build`  
+`cmake --build build`
 
 ## About
 This project puts 16 different sorting algorithms in a race. Each algorithm has one thread to run on, as the main thread prints the information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays. It is worth mentioning the operations section is a little broad and inconsistent across all 16 algorithms, but still an important feature to have nonetheless.
@@ -50,14 +59,6 @@ Through running my program, a few things stood out to me:
 - Non-comparative sorts such as Radix Sort, Bucket Sort, and Counting Sort remained dominant over large datasets, which makes sense due to their linear time.
 - With smaller datasets, the top ranked algorithms are almost impossible to predict. This is because at this number of elements, the randomness more greatly effects how each algorithm sorts. You need a larger dataset for the sorting algorithms to differentiate themselves from each other, sort of similar to the idea in the law of large numbers.
 - With a higher neatness, the slower algorithms benefit the most, except Selection sort, because it still goes through roughly the same amount of checks when finding the next element to select.
-
-## Dependencies
-- C++
-- CMake
-
-## Build and Compile
-`cmake -S . -B build`  
-`cmake --build build`
 
 ## Usage
 Upon running the program, you must press Enter to start. To change the minimum value, maximum value, the number of elements in the array being sorted, and the neatness of the array (how sorted it already is), configure [dataset.hpp](include/dataset.hpp) and change the constants at the top - `MIN`, `MAX`, `ELEMENTS`, and `NEATNESS`.
