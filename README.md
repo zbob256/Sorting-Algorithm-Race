@@ -1,18 +1,42 @@
 # Sorting Algorithm Race
 A terminal-based sorting algorithm race visualizer, which puts any sorting algorithm head to head to showcase how different data being sorted effects the performance of various sorting algorithms.
 
-<img src="media/recording.gif" width="800"/>
+<img src="media/recording.gif" width="800"/><br>
+
+[![C++](https://img.shields.io/badge/C++-17-blue)](...)
+[![CMake](https://img.shields.io/badge/CMake-3.20%2B-blue)](...)
+[![License](https://img.shields.io/badge/License-MIT-green)](...)
+
+<br>
 
 ## Dependencies
-- C++
-- CMake
+- C++17
+- CMake 3.20+
+
+## Installation
+Clone the repository and navigate into the project directory: 
+```bash  
+git clone https://github.com/zbob256/Sorting-Algorithm-Race.git  
+cd Sorting-Algorithm-Race
+```
 
 ## Build and Compile
-`cmake -S . -B build`  
-`cmake --build build`
+Configure the project with CMake:  
+```bash
+cmake -S . -B build  
+cmake --build build
+```
 
-## About
-This project puts 16+ different sorting algorithms in a race. Each sorting algorithm obtains one thread to run on, as the main thread prints information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays. It is worth mentioning the operations section is currently inconsistent across every algorithm, but I eventually want to change how we increment operations.
+## Run
+After building, run the executable from the `build` directory:  
+```bash
+./build/Sorting-Algorithm-Race
+```
+
+<br>
+
+## Overview
+This project puts as many as 16 different sorting algorithms in a race. Each sorting algorithm obtains one thread to run on, as the main thread prints information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays. It is worth mentioning the operations section is currently inconsistent across every algorithm, but I eventually want to change how we increment operations.
 
 There are 5 total statuses a sorting algorithm can be in: "Ready", "Running", "Checking", and then either "Finished" or "Failed".
 
@@ -21,7 +45,6 @@ The program waits for the user to press Enter, than sorts the vector `dataset`. 
 The program also shows each thread's ID, the time in seconds, and of course the rank of the sorting algorithm upon completion. It is worth noting the time taken is likely not accurate for each sorting algorithm, if we are only talking about the raw speed to sort the array. In the code for the sorting algorithm it increases `sort.operations` for the sort's respective class, which takes some time.
 
 ### Currently, here is every sorting algorithm in the project:
-
 1. Bubble Sort
 2. Bucket Sort
 3. Cocktail Shaker Sort
@@ -38,7 +61,6 @@ The program also shows each thread's ID, the time in seconds, and of course the 
 14. Selection Sort
 15. Shell Sort
 16. Tim Sort
-
 
 ## Inspiration
 I orignally was motivated to make this from a video on YouTube called [sorting algorithms to relax/study to](https://www.youtube.com/watch?v=vr5dCRHAgb0). I thought the sheer number of completely unique ways to sort a list of numbers was fascinating.
