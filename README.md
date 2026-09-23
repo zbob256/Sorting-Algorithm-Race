@@ -12,54 +12,42 @@ A terminal-based sorting algorithm race visualizer, which puts any sorting algor
 `cmake --build build`
 
 ## About
-This project puts 16 different sorting algorithms in a race. Each algorithm has one thread to run on, as the main thread prints the information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays. It is worth mentioning the operations section is a little broad and inconsistent across all 16 algorithms, but still an important feature to have nonetheless.
+This project puts 16+ different sorting algorithms in a race. Each sorting algorithm obtains one thread to run on, as the main thread prints information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays. It is worth mentioning the operations section is currently inconsistent across every algorithm, but I eventually want to change how we increment operations.
 
-There are 5 total statuses a sorting algorithm can be in: "Ready", "Running", "Checking", and then either "Finished" or "Failed". Since the "Checking" state is just seeing if everything is sorted, the status quickly changes to "Finished", making it hard to notice it is there. However, with a high enough element count, you will notice it for a brief second.
+There are 5 total statuses a sorting algorithm can be in: "Ready", "Running", "Checking", and then either "Finished" or "Failed".
 
-The program waits for the user to press Enter, than sorts the vector `dataset`. Each algorithm makes a copy of the same data by passing it into the array for each function to ensure fairness among our racers. Once the algorithm is finished, it is passed to the function `verify`, and if that function returns `true` the status is set to "Finished", or if `verify` returns `false`, "Failed".
+The program waits for the user to press Enter, than sorts the vector `dataset`. Each algorithm makes a copy of the same data by passing it into the array for each function to ensure fairness among each algorithm. Once one's status is "Finished", the vector is passed to the function `verify`, and if that function returns `true` the status is set to "Finished", or if `verify` returns `false`, "Failed".
 
-The program also shows each thread's ID, the time in seconds, and of course the rank of the sorting algorithm upon completion. It is worth noting the time taken is likely not accurate for each sorting algorithm, if we are only talking about the raw speed to sort the array. In the code for the sorting algorithm it increases `sort.operations` for the sort's respective class, which does take time.
+The program also shows each thread's ID, the time in seconds, and of course the rank of the sorting algorithm upon completion. It is worth noting the time taken is likely not accurate for each sorting algorithm, if we are only talking about the raw speed to sort the array. In the code for the sorting algorithm it increases `sort.operations` for the sort's respective class, which takes some time.
 
-Below is a table with some basic information on each sorting algorithm, per ChatGPT:
+### Currently, here is every sorting algorithm in the project:
 
-| Algorithm | Average Time | Best Time | Worst Time | Space | Type |
-|-----------|--------------|-----------|------------|-------|------|
-| Bubble Sort | $O(n^2)$ | $O(n)$ | $O(n^2)$ | $O(1)$ | Exchange |
-| Bucket Sort | $O(n + k)$ | $O(n + k)$ | $O(n^2)$ | $O(n + k)$ | Distribution (Non-comparison) |
-| Cocktail Shaker Sort | $O(n^2)$ | $O(n)$ | $O(n^2)$ | $O(1)$ | Exchange |
-| Comb Sort | $O(n^2)$ | $O(n \log n)$ | $O(n^2)$ | $O(1)$ | Exchange |
-| Counting Sort | $O(n + k)$ | $O(n + k)$ | $O(n + k)$ | $O(n + k)$ | Distribution (Non-comparison) |
-| Gnome Sort | $O(n^2)$ | $O(n)$ | $O(n^2)$ | $O(1)$ | Exchange |
-| Heap Sort | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(1)$ | Selection (Heap-based) |
-| Insertion Sort | $O(n^2)$ | $O(n)$ | $O(n^2)$ | $O(1)$ | Insertion |
-| Introsort | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(\log n)$ | Hybrid (Quick + Heap + Insertion) |
-| Merge Sort | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(n)$ | Merge (Divide & Conquer) |
-| Odd-Even Sort | $O(n^2)$ | $O(n)$ | $O(n^2)$ | $O(1)$ | Exchange |
-| Quicksort | $O(n \log n)$ | $O(n \log n)$ | $O(n^2)$ | $O(\log n)$ | Partition Exchange (Divide & Conquer) |
-| Radix Sort | $O(d(n + k))$ | $O(d(n + k))$ | $O(d(n + k))$ | $O(n + k)$ | Distribution (Non-comparison) |
-| Selection Sort | $O(n^2)$ | $O(n^2)$ | $O(n^2)$ | $O(1)$ | Selection |
-| Shell Sort | $O(n^{3/2})$ | $O(n \log n)$ | $O(n^2)$ | $O(1)$ | Insertion (Gap-based) |
-| Tim Sort | $O(n \log n)$ | $O(n)$ | $O(n \log n)$ | $O(n)$ | Hybrid (Merge + Insertion) |
+1. Bubble Sort
+2. Bucket Sort
+3. Cocktail Shaker Sort
+4. Comb Sort
+5. Counting Sort
+6. Gnome Sort
+7. Heap Sort
+8. Insertion Sort
+9. Intro Sort
+10. Merge Sort
+11. Odd-Even Sort
+12. Quick Sort
+13. Radix Sort
+14. Selection Sort
+15. Shell Sort
+16. Tim Sort
+
 
 ## Inspiration
-I orignally was motivated to make this from a video on YouTube. I thought it was interesting how many sorting algorithms existed I had no idea about, and the fact that they actually all had a unique process to sort data was fascinating.
+I orignally was motivated to make this from a video on YouTube called [sorting algorithms to relax/study to](https://www.youtube.com/watch?v=vr5dCRHAgb0). I thought the sheer number of completely unique ways to sort a list of numbers was fascinating.
 
 <a href="https://www.youtube.com/watch?v=vr5dCRHAgb0">
   <img src="https://img.youtube.com/vi/vr5dCRHAgb0/hqdefault.jpg" alt="Video Thumbnail" width="200">
 </a>
 
-[sorting algorithms to relax/study to](https://www.youtube.com/watch?v=vr5dCRHAgb0)
-
-However, I thought it was lacking the ability to race. I also wanted to see how different sorts handle different ranges and amounts of data. Would one sort always rank first? How much effect does varying these aspects of the data actually cause?
-
-Later on, I uncovered more resources similar to the video: [Toptal Sorting Algorithms](https://www.toptal.com/developers/sorting-algorithms) and [Sound of Sorting](https://github.com/bingmann/sound-of-sorting).
-
-## Observations
-Through running my program, a few things stood out to me:
-- Intro sort, which has a lot of logic in deciding which sort to use, placed lower on very small datasets since more simpler ones got straight to the point and avoided more complex optimizations.
-- Non-comparative sorts such as Radix Sort, Bucket Sort, and Counting Sort remained dominant over large datasets, which makes sense due to their linear time.
-- With smaller datasets, the top ranked algorithms are almost impossible to predict. This is because at this number of elements, the randomness more greatly effects how each algorithm sorts. You need a larger dataset for the sorting algorithms to differentiate themselves from each other, sort of similar to the idea in the law of large numbers.
-- With a higher neatness, the slower algorithms benefit the most, except Selection sort, because it still goes through roughly the same amount of checks when finding the next element to select.
+However, the project the video is based on, [Array V](https://github.com/Gaming32/ArrayV), and similar projects like [Sound of Sorting](https://github.com/bingmann/sound-of-sorting), lacked the ability to race lots of sorting algorithms together. I also wanted to race bigger numbers than their visualizers allowed for, as well as capture a closer raw speed of the algorithms, when they aren't bottlenecked by having to move bars around on a window.
 
 ## Usage
 Upon running the program, you must press Enter to start. To change the minimum value, maximum value, the number of elements in the array being sorted, and the neatness of the array (how sorted it already is), configure [dataset.hpp](include/dataset.hpp) and change the constants at the top - `MIN`, `MAX`, `ELEMENTS`, and `NEATNESS`.

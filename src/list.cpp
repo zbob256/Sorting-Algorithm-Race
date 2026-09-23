@@ -20,20 +20,20 @@ Algorithm timSort(-1, "Tim Sort", std::this_thread::get_id(), "Ready", tim);
 
 
 std::vector<std::reference_wrapper<Algorithm>> algorithms = {
-    bubbleSort,
+    // bubbleSort,
     bucketSort,
-    cocktailShakerSort,
+    // cocktailShakerSort,
     combSort,
     countingSort,
-    gnomeSort,
+    // gnomeSort,
     heapSort,
-    insertionSort,
+    // insertionSort,
     introSort,
     mergeSort,
-    oddEvenSort,
+    // oddEvenSort,
     quickSort,
     radixSort,
-    selectionSort,
+    // selectionSort,
     shellSort,
     timSort
 };
