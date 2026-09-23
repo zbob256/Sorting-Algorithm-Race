@@ -1,7 +1,7 @@
 # Sorting Algorithm Race
-A terminal-based sorting algorithm race visualizer, which puts as many different sorting algorithms (16 included) as needed head to head to showcase how different array ranges and sizes effect the performance of various types of sorting algorithms.
+A terminal-based sorting algorithm race visualizer, which puts any sorting algorithm head to head to showcase how different data being sorted effects the performance of various sorting algorithms.
 
-<img src="screenshots/recording.gif" width="800"/>
+<img src="media/recording.gif" width="800"/>
 
 ## Dependencies
 - C++
@@ -151,6 +151,6 @@ add_executable(Sorting-Algorithm-Race
 ## Screenshots
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <img src="screenshots/screenshot1.png" width="800"/>
-    <img src="screenshots/screenshot2.png" width="800"/>
+    <img src="media/screenshot1.png" width="800"/>
+    <img src="media/screenshot2.png" width="800"/>
 </div>
