@@ -36,13 +36,13 @@ After building, run the executable from the `build` directory:
 <br>
 
 ## Overview
-This project puts as many as 16 different sorting algorithms in a race. Each sorting algorithm obtains one thread to run on, as the main thread prints information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays. It is worth mentioning the operations section is currently inconsistent across every algorithm, but I eventually want to change how we increment operations.
+This project puts as many as 16 different sorting algorithms in a race. Each sorting algorithm obtains one thread to run on, as the main thread prints information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays. It is worth mentioning the operations section is currently inconsistent across every algorithm, and the statistic should be taken with a grain of salt.
 
 There are 5 total statuses a sorting algorithm can be in: "Ready", "Running", "Checking", and then either "Finished" or "Failed".
 
 The program waits for the user to press Enter, than sorts the vector `dataset`. Each algorithm makes a copy of the same data by passing it into the array for each function to ensure fairness among each algorithm. Once one's status is "Finished", the vector is passed to the function `verify`, and if that function returns `true` the status is set to "Finished", or if `verify` returns `false`, "Failed".
 
-The program also shows each thread's ID, the time in seconds, and of course the rank of the sorting algorithm upon completion. It is worth noting the time taken is likely not accurate for each sorting algorithm, if we are only talking about the raw speed to sort the array. In the code for the sorting algorithm it increases `sort.operations` for the sort's respective class, which takes some time.
+The program also shows each thread's ID, the time in seconds, and of course the rank of the sorting algorithm upon completion. It is worth noting the time taken is likely not accurate for each sorting algorithm, if we are only talking about the raw speed to sort the array. In the code for the sorting algorithm it increases `sort.operations` for the sort's respective class, which takes some time. You can manually comment out any lines in the `src/sorts` folder in order to have the algorithm run at max speed. However, the time is minimal. For shell sort, the difference for 10 million elements between shell sort and a version that did not track operations was as low as 0.2 seconds out of the 10+ seconds the sort took in total to finish.
 
 ### Currently, here is every sorting algorithm in the project:
 1. Bubble Sort
