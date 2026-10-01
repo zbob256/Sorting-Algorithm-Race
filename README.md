@@ -11,7 +11,7 @@ A terminal-based sorting algorithm race visualizer, which puts any sorting algor
 
 ## Dependencies
 - C++17
-- CMake 3.20+
+- CMake 3.10+
 
 ## Installation
 Clone the repository and navigate into the project directory: 
@@ -36,7 +36,7 @@ After building, run the executable from the `build` directory:
 <br>
 
 ## Overview
-This project puts as many as 16 different sorting algorithms in a race. Each sorting algorithm obtains one thread to run on, as the main thread prints information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays. It is worth mentioning the operations section is currently inconsistent across every algorithm, and the statistic should be taken with a grain of salt.
+This project puts as many as 16 different sorting algorithms in a race. Each sorting algorithm obtains one thread to run on, as the main thread prints information to the terminal. The program keep tracks of general statistics as well as the number of operations - those being mainly comparisons and writes to arrays.
 
 There are 5 total statuses a sorting algorithm can be in: "Ready", "Running", "Checking", and then either "Finished" or "Failed".
 

@@ -22,10 +22,14 @@ void counting(std::vector<int> arr) {
     std::vector<int> count(maxVal + 1, 0);
     for (int num : arr) {
         count[num]++;
+
+        countingSort.operations++;
     }
 
     for (int i = 1; i <= maxVal; i++) {
         count[i] += count[i - 1];
+
+        countingSort.operations++;
     }
 
     std::vector<int> output(arr.size());
