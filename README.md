@@ -1,5 +1,6 @@
 # Sorting Algorithm Race
-A terminal-based sorting algorithm race visualizer, which puts any sorting algorithm head to head to showcase how different data being sorted effects the performance of various sorting algorithms.
+A terminal-based sorting algorithm race visualizer, which puts any sorting algorithm head to head to showcase how different data being sorted effects the performance of various sorting algorithms.  
+My YouTube Channel explaining and test Sorting Algorithms: [ZBob 256](https://youtube.com/@zbob256)
 
 <img src="media/recording.gif" width="800"/><br>
 
