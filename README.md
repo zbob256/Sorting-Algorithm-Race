@@ -10,7 +10,7 @@ A terminal-based sorting algorithm race visualizer, which puts any sorting algor
 My YouTube Channel explaining and test Sorting Algorithms: [ZBob 256](https://youtube.com/@zbob256)
 
 <a href="https://www.youtube.com/watch?v=ZguGVEryQCw">
-  <img src="https://img.youtube.com/vi/ZguGVEryQCw/hqdefault.jpg" alt="Video Thumbnail" width="200">
+  <img src="https://img.youtube.com/vi/ZguGVEryQCw/hqdefault.jpg" alt="Video Thumbnail" width="500">
 </a>
 
 <br>
