@@ -1,16 +1,17 @@
 # Sorting Algorithm Race
 A terminal-based sorting algorithm race visualizer, which puts any sorting algorithm head to head to showcase how different data being sorted effects the performance of various sorting algorithms.  
-My YouTube Channel explaining and test Sorting Algorithms: [ZBob 256](https://youtube.com/@zbob256)
-
-<a href="https://www.youtube.com/watch?v=ZguGVEryQCw">
-  <img src="https://img.youtube.com/vi/ZguGVEryQCw/hqdefault.jpg" alt="Video Thumbnail" width="200">
-</a>
 
 <img src="media/recording.gif" width="800"/><br>
 
 [![C++](https://img.shields.io/badge/C++-17-blue)](...)
 [![CMake](https://img.shields.io/badge/CMake-3.20%2B-blue)](...)
 [![License](https://img.shields.io/badge/License-MIT-green)](...)
+
+My YouTube Channel explaining and test Sorting Algorithms: [ZBob 256](https://youtube.com/@zbob256)
+
+<a href="https://www.youtube.com/watch?v=ZguGVEryQCw">
+  <img src="https://img.youtube.com/vi/ZguGVEryQCw/hqdefault.jpg" alt="Video Thumbnail" width="200">
+</a>
 
 <br>
 
